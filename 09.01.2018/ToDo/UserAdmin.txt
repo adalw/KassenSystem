@@ -1,0 +1,13 @@
+-benutzer.php in UserAdminOberfläche.php integrieren
+- Admin 1 oder 0 auswählen in UserAdminOberfläche.php  und eintrag in DB
+- Passwort muss bei User anlegen identisch sein
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Verkäufer</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=kassegui.css>
+	<script src="http://localhost/Orginal1/kassegui.html">	</script>
+</head>
+    
+<body>
+  
+    
+<!-- Header -->
+    <header>
+        <div class="header" >
+            <h3 id="überschrift">Kassen-System</h3>
+        </div>
+    </header>
+    
+    
+<!-- LINKS -->
+    <div class="links">
+        
+        <div class="zahlung">
+            <h3 class="überschrifttext" id="zahlung" >ZAHLUNG</h3></br></br>
+            <div class="textbox">
+                <label>Betrag:</label></br>
+                <input type="text" name="" id="betrag" style="width: 300px; height: 50px;"  readonly></br></br>
+                <label>Gegeben:</label></br>
+                <input type="text" name="" id="gegeben" style="width: 300px; height: 50px;" readonly></br></br>
+                <label>Rückgeld:</label></br>
+                <input type="text" name="" id="ruckgeld" style="width: 300px; height: 50px;" readonly></br>
+            </div>
+            
+        
+        </div>
+        
+        
+        <div >
+            <table border="3" id="arechner">
+			
+				<tr>
+                    <th ><input class="rechner" type="button" value="Löschen" name="no" onclick="löschen()">  </th>
+                    <th colspan="2"><input id="total" class="rechner" type="button" value="TOTAL" name="no" onclick="summe()">  </th>
+                </tr>
+				
+                <tr>
+                    <th><input class="rechner" type="button" value="7" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="8" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="9" name="no" onclick="moveNumbers(this.value)">  </th>
+                </tr>
+                <tr>
+                    <th><input class="rechner" type="button" value="4" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="5" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="6" name="no" onclick="moveNumbers(this.value)">  </th>
+                </tr>
+                <tr>
+                    <th><input class="rechner" type="button" value="1" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="2" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="3" name="no" onclick="moveNumbers(this.value)">  </th>
+                </tr>
+                <tr>
+                    <th><input class="rechner" type="button" value="0" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="00" name="no" onclick="moveNumbers(this.value)">  </th>
+                    <th><input class="rechner" type="button" value="," name="no" onclick="moveNumbers(this.value)"> </th>
+                </tr>
+            </table>
+			
+			
+			<!--GEGEBEN-->
+			<script> function moveNumbers(num) 
+			{
+				var txt=document.getElementById("gegeben").value;
+				txt=txt + num;
+				document.getElementById("gegeben").value=txt;
+			}
+			</script>
+			
+			<!--Löschen-->
+			<script> function löschen() {
+				var value = document.getElementById("gegeben").value;
+				document.getElementById("gegeben").value = value.substr(0, value.length - 1);
+			}
+
+			</script>
+			
+			
+			<!--Rückgeld-->
+			<script> function summe()
+			{
+			var a = document.getElementById('gegeben').value;
+			var b = document.getElementById('betrag').value;
+			
+			var erg = a-b;
+			
+			document.getElementById("ruckgeld").value=erg;
+			
+			} 
+			</script>
+			
+			
+        </div>
+ </div>
+
+
+<!-- RECHTS -->
+    <aside>
+        <div class="rechts">
+            <button type="button" onclick="stronoall()" class="rechtsbutton" id="storno">Storno</button></br></br>
+            <button type="button" 						class="rechtsbutton"> Alles</button></br></br>
+            <button type="button" onclick="fünfpro()" 	class="rechtsbutton">5%</button></br></br>
+            <button type="button" onclick="zehnpro()"	class="rechtsbutton">10%</button></br></br>
+            <button type="button" onclick="fünfeuro()"	class="rechtsbutton">5€</button></br></br>
+            <button type="button" onclick="zehneuro()"	class="rechtsbutton">10€</button></br></br>
+            <button type="button" onclick="zwanzigeuro()"	class="rechtsbutton">20€</button></br></br>
+            <button type="button" onclick="fünzigeuro()"	class="rechtsbutton">50€</button></br></br>
+            <button type="button" onclick="fünfeuro()"	class="rechtsbutton">Total</button></br></br></br>
+            <button type="button" onclick="logout()"	class="rechtsbutton" id="logout">LOGOUT</button>
+			
+		
+		<!--STORNO-->
+        <script>
+            var index, table = document.getElementById('Tablebestellung');
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                table.rows[i].cells[3].onclick = function()
+                {
+                        index = this.parentElement.rowIndex;
+                        table.deleteRow(index);
+                };
+            }
+        </script>
+		
+		<!--5%-->
+        <script> function fünfpro()
+		{
+		var a = document.getElementById('betrag').value;
+		var b = +a  /1.05;	
+		var n = b.toFixed(2)
+		document.getElementById('betrag').value=n;
+		} 
+		</script>
+		
+		<!--10%-->
+		<script> function zehnpro()
+		{
+		var a = document.getElementById('betrag').value;
+		var b = +a  /1.1;	
+		var n = b.toFixed(2)
+		document.getElementById('betrag').value=n;
+		} 
+		</script>
+		
+		<!--fünfeuro-->
+		<script> function fünfeuro()
+		{
+		var a = 5;	
+		document.getElementById('gegeben').value=a;
+		} 
+		</script>
+		
+		<!--zehneuro-->
+		<script> function zeheuro()
+		{
+		var a = 10;	
+		var b = document.getElementById('gegeben').value;
+		
+		if(a<b)
+		{
+			 alert("Zu wening Geld!");
+		}
+		else
+		{
+		document.getElementById('gegeben').value=a;
+		}
+		} 
+		</script>
+		
+		<!--Logout-->
+		<script type="text/javascript">
+		document.getElementById("logout").onclick = function () {
+        location.href = "index.html";
+		};
+		</script>
+           
+        </div>
+        
+    </aside>
+
+
+<!--BESTELLUNG -->
+<div class="bestellung">
+	<h3 class="überschrifttext" id="bestellung">BESTELLUNG</h3>
+
+	<table border="3" id="Tablebestellung">
+	  <tr id="bestellungHeader">
+		<td>ARTIKEL</td>
+		<td>MENGE</td>
+		<td>PREIS</td>
+		<td>LÖSCHEN</td>
+	  </tr>  
+	</table>
+	
+	
+	<input id="bestellbutton" type="button" value="Total" onclick="rechnung()" disabled = true/>
+
+	 <!--Total berechnung-->
+        <script>
+			function rechnung() 
+			{
+            
+            var table = document.getElementById("Tablebestellung"), sumVal = 0;
+            
+            for(var i = 1; i < table.rows.length; i++)
+            {
+                sumVal = sumVal + parseInt(table.rows[i].cells[2].innerHTML);
+            }			
+			document.getElementById('betrag').value =sumVal;
+			}
+            
+        </script>
+
+</div>
+
+
+
+<!-- TAB-MENU -->
+<div id="ALL">
+
+    <div class="tabset">
+  <!-- Tab 1 -->
+  <input type="radio" name="tabset" id="tab1" aria-controls="marzen" checked>
+  <label for="tab1">ESSEN</label>
+  <!-- Tab 2 -->
+  <input type="radio" name="tabset" id="tab2" aria-controls="rauchbier">
+  <label for="tab2">TRINKEN</label>
+  <!-- Tab 3 -->
+  <input type="radio" name="tabset" id="tab3" aria-controls="dunkles">
+  <label for="tab3">MENÜS</label>
+  
+    
+  <div class="tab-panels">
+    <section id="marzen" class="tab-panel">
+        <table >
+            <tr >
+                <th> <button class="button" name="Pommes1" id="Pommes" value="pommes1" onclick="setPommes()">Pommes</button> </th>
+                <th> <button class="button" name="Pommes1" id="Pommes" value="salat1" onclick="setSalat()">Salat</button> </th>
+        
+                <th> <button class="button">Pommes</button> </th>
+                <th> <button class="button">Pommes</button> </th>
+            </tr>
+            <tr >
+                <th> <button class="button">Pommes</button> </th>
+                <th> <button class="button">Pommes</button> </th>
+                <th> <button class="button">Pommes</button> </th>
+                <th> <button class="button">Pommes</button> </th>
+            </tr>
+    
+        </table>		
+		
+		<script>
+		function setSalat() 
+			{
+				var table = document.getElementById("Tablebestellung");
+				var row = table.insertRow(1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3= row.insertCell(2);
+				var cell4= row.insertCell(3);
+				cell1.innerHTML = "Salat";
+				cell2.innerHTML = "1";
+				cell3.innerHTML = "4 €";
+				cell4.innerHTML = "Löschen";
+				document.getElementById("bestellbutton").disabled = false;
+			}
+        </script>
+		
+		<script>
+            function setPommes() 
+			{
+				var table = document.getElementById("Tablebestellung");
+				var row = table.insertRow(1);
+				var cell1 = row.insertCell(0);
+				var cell2 = row.insertCell(1);
+				var cell3= row.insertCell(2);
+				var cell4= row.insertCell(3);
+				cell1.innerHTML = "Pommes";
+				cell2.innerHTML = "1";
+				cell3.innerHTML = "2 €";
+				cell4.innerHTML = "Löschen";
+				document.getElementById("bestellbutton").disabled = false;
+			}			
+        </script>
+	
+		
+										
+  </section>
+       
+      
+    <section id="rauchbier" class="tab-panel">
+      <table>
+            <tr >
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+
+            </tr>
+            <tr >
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+                <th> <button class="button">Cola</button> </th>
+            </tr>
+    
+        </table>
+        
+    </section>      
+    
+      
+    <section id="dunkles" class="tab-panel">
+      <table>
+            <tr >
+                <th> <button class="button" id="pommes"></button> </th>
+                <th> <button class="button" id="cola"></button> </th>
+                <th> <button class="button" id="cola1"></button> </th>
+                <th> <button class="button"></button> </th>
+
+            </tr>
+            <tr >
+                <th> <button class="button"></button> </th>
+                <th> <button class="button"></button> </th>
+                <th> <button class="button"></button> </th>
+                <th> <button class="button"></button> </th>
+            </tr>
+        </table>
+    </section>
+  </div>
+  
+</div>
+    
+</div>
+    
+
+<!-- FOOTER
+<footer>
+    <p>--FOOTER--</p>
+</footer>
+-->
+
+</body>
+    
+</html>
